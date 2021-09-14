@@ -3,4 +3,4 @@ cmake ..
 cmake --build .
 
 Using g++:
-g++ assignment1.cpp -o assignment1
+g++ assignment1.cpp -o assignment1 -pthread

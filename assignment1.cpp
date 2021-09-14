@@ -89,31 +89,28 @@ void threadFunction(int i, int j)
     }
 }
 
-int main()
+int main(int argc, char **argv)
 {
-    std::string input;
-    std::string command, Xstring;
+    std::vector<std::string> arguments;
+    std::vector<char> flags;
     int X;
 
-    while(input != "exit")
+    if(argc <= 1)
+        return 0;
+    for(int i = 0; i < argc; i++)
     {
-        std::cout << "This program is work in progress.\n" << std::endl;
-        std::cout << "Type in '-i' for info," << std::endl <<
-        "'-f X' to fork an X amount of processes," << std::endl <<
-        "'-t X' to use threads instead of forks," << std::endl <<
-        "and 'exit' to exit program." << std::endl;
-        std::getline(std::cin, input);
+        arguments.push_back(argv[i]);
+    }
 
-        // dela upp input i två delar
-        command = input.substr(0, 2);
-        if(input.length() > 3)
-        {
-            Xstring = input.substr(3);
-            std::stringstream Xstream(Xstring);
-            Xstream >> X;
-        }
-
-        if(command == "-i")
+    arguments[1].erase(0, 1);
+    for(int i = 0; i < arguments[1].size(); i++)
+    {
+        flags.push_back(arguments[1][i]);
+    }
+    
+    for(int i = 0; i < flags.size(); i++)
+    {
+        if(flags[i] == 'i')
         {
             // print out the number of processors, the hostname, the hardware platform, and the
             // total amount of memory
@@ -128,13 +125,17 @@ int main()
             std::cout << "Total amount of memory: " << totalMemory() << std::endl;
             std::cout << std::endl;
         }
-        else if(command == "-f")
+        else if(flags[i] == 'f' && argc == 3)
         {
             int i = 1;
             int j = 1;
             pid_t pid;
             sum = 0;
             std::cout << "forking processes" << std::endl;
+
+            std::stringstream Xstream(argv[2]);
+            Xstream >> X;
+
             for(i = 1; i <= X; i++)
             {
                 pid = fork();
@@ -152,15 +153,19 @@ int main()
             wait(NULL);
             if(pid)
                 return 0;
-            std::cout << sum << std::endl;
+            std::cout << "Total sum: " << sum << std::endl;
 
         }
-        else if(command == "-t")
+        else if(flags[i] == 't' && argc == 3)
         {
             std::cout << "threading processes" << std::endl;
             // skapa tråd-funktion som utför samma sak som i -f, ta in argument för X.
             int i = 1;
             sum = 0;
+
+            std::stringstream Xstream(argv[2]);
+            Xstream >> X;
+
             std::thread threadList[X];
             for(i = 1; i <= X; i++)
             {
@@ -171,7 +176,7 @@ int main()
             {
                 t.join();
             }
-            std::cout << sum << std::endl;
+            std::cout << "Total sum: " << sum << std::endl;
         }
     }
 }
