@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/emma/skrivbord/Assignments/Assignment_1/assignment1.cpp
+iostream
+-
+string
+-
+fstream
+-
+sstream
+-
+sys/wait.h
+-
+unistd.h
+-
+cmath
+-
+thread
+-
+pthread.h
+-
+vector
+-
+mutex
+-
+
