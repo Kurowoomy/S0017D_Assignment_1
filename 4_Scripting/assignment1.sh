@@ -18,4 +18,5 @@ done
 
 # change float to double and back to all files in current folder
 sed -i 's/float/double/g' *
+sleep 3
 sed -i 's/double/float/g' *

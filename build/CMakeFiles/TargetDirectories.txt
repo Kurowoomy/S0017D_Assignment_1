@@ -1,3 +1,0 @@
-/home/emma/skrivbord/Assignments/Assignment_1/build/CMakeFiles/rebuild_cache.dir
-/home/emma/skrivbord/Assignments/Assignment_1/build/CMakeFiles/edit_cache.dir
-/home/emma/skrivbord/Assignments/Assignment_1/build/CMakeFiles/Assignment1.dir

@@ -1,6 +1,6 @@
-Using CMake, creating the build inside a subfolder:
+Using CMake, creating the build inside the build subfolder:
 cmake ..
 cmake --build .
 
 Using g++:
-g++ assignment1.cpp -o assignment1 -pthread
+g++ assignment1.cpp -o Assignment1 -pthread
